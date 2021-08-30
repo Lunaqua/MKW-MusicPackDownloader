@@ -2,10 +2,11 @@
 
 # Exit conditions
 	# 0 - Script executed correctly.
+    # 1 - Entered file does not exist.
 	# 2 - Required file not found.
 	# 3 - No json files.
 
-# This script will download the construct a mario kart wii music pack.
+# This script will download and construct a mario kart wii music pack.
 # Requirements are set in README.MD.
 
 function file_check {
@@ -44,4 +45,26 @@ fi
 
 }
 
+function file_selection_menu {
+file=""
+# Allows for the selection of json files
+
+
+printf "\n"
+dir ./JSON/ -1 | grep .json | sed s/.json//g
+
+printf "\nEnter name of pack:";
+read file
+file=file".json"
+
+}
+
+# - - - - - - - - - - - - - - - -
+# Main Program Start
+# - - - - - - - - - - - - - - - -
+
+file=""
+
 file_check
+file_selection_menu
+echo $file
