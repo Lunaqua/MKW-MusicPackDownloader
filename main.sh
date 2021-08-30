@@ -73,6 +73,13 @@ if test $header != "MKWMP-HEADER"; then
     exit 4;
 fi
 
+header="$(jq -r '.mkversion' "./JSON/$file")"
+
+if test $header != "v1"; then
+    echo "Invalid JSON"
+    exit 4;
+fi
+
 }
 
 function user_file_check {
