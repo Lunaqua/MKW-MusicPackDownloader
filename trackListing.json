@@ -1,0 +1,198 @@
+{
+    "Tracks": [
+        {
+            "Number": "0",
+            "Track": "Luigi/Mario Circuit",
+            "Filename": "n_circuit32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "1",
+            "Track": "Moo Moo Meadows",
+            "Filename": "n_farm_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "2",
+            "Track": "Mushroom Gorge",
+            "Filename": "n_kinoko_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "3",
+            "Track": "Toad's Factory",
+            "Filename": "STRM_N_FACTORY_",
+            "Tracks": "4"
+        },
+        {
+            "Number": "4",
+            "Track": "Coconut Mall",
+            "Filename": "n_shopping32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "5",
+            "Track": "DK Snowboard Cross",
+            "Filename": "n_snowboard32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "6",
+            "Track": "Wario's Gold Mine",
+            "Filename": "STRM_N_TRUCK_",
+            "Tracks": "4"
+        },
+        {
+            "Number": "7",
+            "Track": "Daisy Circuit",
+            "Filename": "n_daisy32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "8",
+            "Track": "Koopa Cape",
+            "Filename": "STRM_N_WATER_",
+            "Tracks": "8"
+        },
+        {
+            "Number": "9",
+            "Track": "Maple Treeway",
+            "Filename": "n_maple_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "10",
+            "Track": "Grumble Volcano",
+            "Filename": "n_volcano32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "11",
+            "Track": "Dry Dry Ruins",
+            "Filename": "STRM_N_DESERT_",
+            "Tracks": "4"
+        },
+        {
+            "Number": "12",
+            "Track": "Moonview Highway",
+            "Filename": "STRM_N_RIDGEHIGHWAY_",
+            "Tracks": "4"
+        },
+        {
+            "Number": "13",
+            "Track": "Bowser's Castle",
+            "Filename": "STRM_N_KOOPA_",
+            "Tracks": "8"
+        },
+        {
+            "Number": "14",
+            "Track": "Rainbow Road",
+            "Filename": "n_rainbow32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "15",
+            "Track": "GCN Peach Beach",
+            "Filename": "r_gc_beach32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "16",
+            "Track": "DS Yoshi Falls",
+            "Filename": "r_ds_jungle32",
+            "Tracks": "2"
+        },
+        {
+            "Number": "17",
+            "Track": "SNES Ghost Valley 2",
+            "Filename": "r_sfc_obake32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "18",
+            "Track": "N64 Mario Raceway",
+            "Filename": "r_64_circuit32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "19",
+            "Track": "N64 Sherbet Land",
+            "Filename": "r_64_sherbet32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "20",
+            "Track": "GBA Shyguy Beach ",
+            "Filename": "r_agb_beach32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "21",
+            "Track": "DS Delfino Square",
+            "Filename": "r_ds_town32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "22",
+            "Track": "GCN Waluigi Stadium",
+            "Filename": "r_gc_stadium32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "23",
+            "Track": "DS Desert Hills",
+            "Filename": "r_ds_desert32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "24",
+            "Track": "GBA Bowser Castle 3 ",
+            "Filename": "r_agb_kuppa32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "25",
+            "Track": "N64 DK Jungle Parkway",
+            "Filename": "r_64_jungle32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "26",
+            "Track": "GCN Mario Circuit",
+            "Filename": "r_gc_circuit32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "27",
+            "Track": "SNES Mario Circuit 3",
+            "Filename": "r_sfc_circuit32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "28",
+            "Track": "DS Peach Garden",
+            "Filename": "r_ds_garden32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "29",
+            "Track": "GCN DK Mountain",
+            "Filename": "r_gc_mountain32_",
+            "Tracks": "2"
+        },
+        {
+            "Number": "30",
+            "Track": "N64 Bowser's Castle",
+            "Filename": "r_64_kuppa32_",
+            "Tracks": "2"
+        }
+    ],
+    
+    "Sounds": [
+        {
+            "Number": "0",
+            "Track": "Battle Winner",
+            "Filename": "o_FanfareTA1st_32",
+        }
+    ]
+}

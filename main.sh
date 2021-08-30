@@ -101,6 +101,8 @@ fileDirect="./JSON/$1"
 # - - - - - - - - - - - - - - - -
 
 file=""
+extension=".brstm"
+dictionary="trackListing.json"
 
 file_check
 file_selection_menu
