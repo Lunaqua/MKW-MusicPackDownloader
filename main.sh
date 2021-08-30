@@ -110,7 +110,6 @@ function deinit {
 # Cleanup
     rm -rf downloads
     rm -rf conversion
-    rm -rf My\ Stuff
 
 }
 
@@ -151,7 +150,7 @@ downloadType="$(jq -r '.tracks | .['$loop'].downloadtype' $fileDirect)"
 game="$(jq -r '.tracks | .['$loop'].game' $fileDirect)"
 length="$(jq -r '.tracks | .['$loop'].length' $fileDirect)"
 link="$(jq -r '.tracks | .['$loop'].link' $fileDirect)"
-loop="$(jq -r '.tracks | .['$loop'].loop' $fileDirect)"
+trackLoop="$(jq -r '.tracks | .['$loop'].loop' $fileDirect)"
 volume="$(jq -r '.tracks | .['$loop'].volume' $fileDirect)"
 speed="$(jq -r '.tracks | .['$loop'].speed' $fileDirect)"
 
@@ -180,11 +179,11 @@ function downloader_chooser {
         ;;
         
         1)
-        wget "https://smashcustommusic.net/brstm/$link" -O ./downloads/output_$loop$extension -o ./logs/log_$loop.txt
+        wget "https://smashcustommusic.net/brstm/$link" -O ./conversion/output_$loop$extension -o ./logs/log_$loop.txt
         ;;
         
         2)
-        yt-dlp "$link" -f 251 -o ./downloads/output_$loop.webm > /logs/log_$loop.txt
+        yt-dlp "$link" -f 251 -o ./downloads/output_$loop
         ;;
         
         *)
@@ -192,6 +191,20 @@ function downloader_chooser {
         exit 4;
         ;;
     esac
+}
+
+function track_processor {
+# This function produces the brstms from the supplied information.
+
+if ! test $downloadType = "1"; then
+    ffmpeg -i "./downloads/output_$loop" "./downloads/output_$loop.wav" > ./logs/log_file_convert_$loop.txt
+    brstm_converter "./downloads/output_$loop.wav" -o "./conversion/output_$loop$extension" -l $trackLoop > ./logs/log_convert_$loop.txt
+fi
+    brstm_converter "./conversion/output_$loop$extension" -o "./My Stuff/$fileName"n"$extension" --ffmpeg "-af volume=$volume'dB'" > ./logs/log_volume_$loop.txt
+    if test $speed = "null"; then
+        speed=1.10
+    fi
+    brstm_converter "./My Stuff/$fileName"n"$extension" -o "./My Stuff/$fileName"f"$extension" --ffmpeg "-filter:a "atempo=$speed"" > ./logs/log_speed_$loop.txt
 }
 
 # - - - - - - - - - - - - - - - -
@@ -209,12 +222,19 @@ user_file_check $file
 printf "\n -- beginning download and construction process -- "
 init
 
+#For loop for performing the download and construction on each line of the json.
+for loop in {0..30}
+do
 json_process
-#if test $? -eq 1; then
-#    echo "do next loop number"
-#fi
+
+if test $? -eq 1; then
+    continue
+fi
 
 downloader_chooser
+track_processor
+loop=$loop+1
+done
 #deinit
 
 exit 0;
