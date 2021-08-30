@@ -75,7 +75,7 @@ fi
 
 header="$(jq -r '.mkversion' "./JSON/$file")"
 
-if test $header != "v1"; then
+if test $header != "v1.0.0"; then
     echo "Invalid JSON"
     exit 4;
 fi
@@ -242,6 +242,7 @@ downloader_chooser
 track_processor
 loop=$loop+1
 done
-#deinit
+
+deinit
 
 exit 0;
