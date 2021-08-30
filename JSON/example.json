@@ -3,5 +3,125 @@
     "mk-version": "v1",
     "name": "Example Music Pack",
     "author": "Example Author",
-    "date": "2222-22-22"
+    "date": "2222-22-22",
+    "version": "v1.0",
+    "tracks": [
+        {
+            "enabled": "1",
+            "download-type": "1",
+            "title": "Crystal Cliffs",
+            "game": "Pac-Man Party",
+            "length": "0:32",
+            "link": "17516",
+            "loop": "0",
+            "volume": "5",
+            "speed": "1.15"
+        },
+        {
+            "enabled": "1",
+            "download-type": "2",
+            "title": "Windmill Isle (Day)",
+            "game": "Sonic Unleashed",
+            "length": "5:02",
+            "link": "https://www.youtube.com/watch?v=2b8TKhIz_ZY",
+            "loop": "6604701",
+            "volume": "6"
+        },
+        {
+            "course-name": "Mushroom Gorge",
+            "enabled": "1",
+            "download-type": "0",
+            "title": "Botpack #9 (Loop)",
+            "game": "Unreal Tournament",
+            "length": "8:15",
+            "link": "<todo>",
+            "loop": "0",
+            "volume": "5",
+            "speed": "1.2"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        },
+        {
+            "enabled": "0"
+        }
+    ]
 }

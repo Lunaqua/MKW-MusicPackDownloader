@@ -84,6 +84,7 @@ fileDirect="./JSON/$1"
         echo "Name: $(jq -r '.name' $fileDirect)"
         echo "Author: $(jq -r '.author' $fileDirect)"
         echo "Date: $(jq -r '.date' $fileDirect)"
+        echo "Version: $(jq -r '.version' $fileDirect)"
         echo "---"
         
         printf "\n Is this the correct pack? (Y/n): "
@@ -94,6 +95,41 @@ fileDirect="./JSON/$1"
             exit 0;
         fi
 
+}
+
+function json_process {
+# This function process the json file to calculate certain parameters.
+    # Firstly, the number of tracks filled is calculated, this will ensure that the JSON is complete.
+    
+numOfTracks="$(jq -r '[.tracks | keys] | flatten | length' $fileDirect)"
+if ! test $numOfTracks -eq 31; then
+    echo "Number of tracks incorrect"
+    exit 4;
+fi
+
+    # JSON Key Parameters
+        # "course-name"     - Optional, acts as a guide to the track listing
+        # "enabled"         - Enables the track (1 or 0, if 0, all other keys are optional)
+        # "download-type"   - Can be:
+            # 0 - Standard wget download
+            # 1 - smashcustommusic download (No conversion)
+            # 2 - youtube download (via yt-dlp)
+        
+        # "title"           - Name of track.
+        # "game"            - Name of game if applicable (optional)
+        # "length"          - Length of track (optional)
+        # "link"            - Link to track (if download-type is 1, song ID)
+        # "loop"            - Loop point in samples
+        # "volume"          - Volume increase of track in dB
+        # "speed"           - Speed increase (defaults to 1.10x)
+        
+
+
+}
+
+function music_downloader {
+# This function performing the track downloads.
+    echo "TODO";
 }
 
 # - - - - - - - - - - - - - - - -
@@ -107,3 +143,4 @@ dictionary="trackListing.json"
 file_check
 file_selection_menu
 user_file_check $file
+json_process
