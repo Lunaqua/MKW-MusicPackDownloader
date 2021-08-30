@@ -8,7 +8,7 @@
     "tracks": [
         {
             "enabled": "1",
-            "download-type": "1",
+            "downloadtype": "1",
             "title": "Crystal Cliffs",
             "game": "Pac-Man Party",
             "length": "0:32",
@@ -19,7 +19,7 @@
         },
         {
             "enabled": "1",
-            "download-type": "2",
+            "downloadtype": "2",
             "title": "Windmill Isle (Day)",
             "game": "Sonic Unleashed",
             "length": "5:02",
@@ -30,11 +30,11 @@
         {
             "course-name": "Mushroom Gorge",
             "enabled": "1",
-            "download-type": "0",
+            "downloadtype": "0",
             "title": "Botpack #9 (Loop)",
             "game": "Unreal Tournament",
             "length": "8:15",
-            "link": "<todo>",
+            "link": "https://github.com/Lunaqua/MKW-MusicPackDownloader/raw/master/sample.ogg",
             "loop": "0",
             "volume": "5",
             "speed": "1.2"

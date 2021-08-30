@@ -187,12 +187,11 @@
             "Tracks": "2"
         }
     ],
-    
     "Sounds": [
         {
             "Number": "0",
             "Track": "Battle Winner",
-            "Filename": "o_FanfareTA1st_32",
+            "Filename": "o_FanfareTA1st_32"
         }
     ]
 }
