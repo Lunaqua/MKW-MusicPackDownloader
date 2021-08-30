@@ -75,6 +75,27 @@ fi
 
 }
 
+function user_file_check {
+# Checks to see if the selected pack is the one the user wants
+
+fileDirect="./JSON/$1"
+        printf "\nMusic Pack Information"
+        echo "---"
+        echo "Name: $(jq -r '.name' $fileDirect)"
+        echo "Author: $(jq -r '.author' $fileDirect)"
+        echo "Date: $(jq -r '.date' $fileDirect)"
+        echo "---"
+        
+        printf "\n Is this the correct pack? (Y/n): "
+        read userChoice
+        
+        if [ $userChoice = "n" ] || [ $userChoice = "N" ]; then
+            echo "Program will exit"
+            exit 0;
+        fi
+
+}
+
 # - - - - - - - - - - - - - - - -
 # Main Program Start
 # - - - - - - - - - - - - - - - -
@@ -83,3 +104,4 @@ file=""
 
 file_check
 file_selection_menu
+user_file_check $file

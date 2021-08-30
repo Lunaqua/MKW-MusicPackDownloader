@@ -1,4 +1,6 @@
 {
     "header": "MKWMP-HEADER",
-    "name": "Example Music Pack"
+    "name": "Example Music Pack",
+    "author": "Example Author",
+    "date": "2222-22-22"
 }
