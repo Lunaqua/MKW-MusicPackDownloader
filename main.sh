@@ -5,6 +5,7 @@
     # 1 - Entered file does not exist.
 	# 2 - Required file not found.
 	# 3 - No json files.
+    # 4 - Invalid JSON File
 
 # This script will download and construct a mario kart wii music pack.
 # Requirements are set in README.MD.
@@ -51,11 +52,26 @@ file=""
 
 
 printf "\n"
+    # Lists files wth no file extension.
 dir ./JSON/ -1 | grep .json | sed s/.json//g
 
 printf "\nEnter name of pack:";
 read file
-file=file".json"
+file=$file".json"
+
+# Test for file's existence.
+if ! test -f "./JSON/$file"; then
+    echo "File not found"
+    exit 1;
+fi
+
+# Checks to see if JSON is valid for program.
+header="$(jq -r '.header' "./JSON/$file")"
+
+if test $header != "MKWMP-HEADER"; then
+    echo "Invalid JSON"
+    exit 4;
+fi
 
 }
 
@@ -67,4 +83,3 @@ file=""
 
 file_check
 file_selection_menu
-echo $file
