@@ -8,6 +8,8 @@
 # This script will download the construct a mario kart wii music pack.
 # Requirements are set in README.MD.
 
+function file_check {
+
 #Check for required files
 
 if ! hash "wget" 2>/dev/null; then
@@ -34,3 +36,12 @@ if ! hash "jq" 2>/dev/null; then
 	echo "jq not found";
 	exit 2;
 fi
+
+if test -z "$(ls ./JSON/)"; then
+    echo "No JSON files found";
+    exit 3;
+fi
+
+}
+
+file_check
