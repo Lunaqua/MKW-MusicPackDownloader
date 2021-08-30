@@ -20,6 +20,7 @@ This script requires a few programs in order to work.
 	openrevolution (Must be compiled) - Required for brstm conversion.
 	wget - Required for downloading of files.
 	yt-dlp - Required for downloading from youtube.
+	jq - Required for interpreting json files.
 
 ### Usage
 -- To be written --
