@@ -93,12 +93,28 @@ Do this for all 31 tracks in the game, and you will have a complete music pack.
 
 ## Todo
 
+- Add curl as an alternative to wget.
 - Creation of multi-channel brstms
 - Support for other music files (winning tune, track intro)
+- Support for battle arena music.
 - Creation of "fast" brstms with pitch-bend
 - Possible download from other websites.
 - Creation of "fast" brstm from seperate music file
 - Better file browser.
+- Test mode, allowing the download of single tracks.
+- Ability to insert files into an extracted mkwii filesystem (Thinking about fkw etc.)
+- Detection of wget download being a brstm file. (Detect file magic?)
 
+### Possible cli flags
 
+- -c / --curl - Enable curl downloading
+- -l / --log  - Enable saving of logs
+- -x / --extracted-fs - Enable copying to extracted file system
+- -t / --test - Test mode.
+
+### Future possible ideas
+
+- Windows build using Cygwin
+- Port to C++ (would require a lot of work)
+- Download of music packs from wiki.tockdom.com based on track listing. (Would require a lot of work, and may not be at all feasible)
 
