@@ -11,12 +11,17 @@
 # Requirements are set in README.MD.
 
 function file_check {
+__DOWNLOAD__="wget"
 
 #Check for required files
 
 if ! hash "wget" 2>/dev/null; then
-	echo "wget not found";
-	exit 2;
+	echo "wget not found, curl will be used if found.";
+	$__DOWNLOAD__="curl"
+	if ! hash "curl" 2>/dev/null; then
+        echo "curl not found";
+        exit 2;
+    fi
 fi
 
 if ! hash "ffmpeg" 2>/dev/null; then
@@ -182,11 +187,19 @@ function downloader_chooser {
     
     case $downloadType in
         0)
-        wget "$link" -O ./downloads/output_$loop -o ./logs/log_$loop.txt
+        if test $__DOWNLOAD__ = "curl"; then
+            curl "$link" -o ./downloads/output_$loop -v > ./logs/log_$loop.txt
+        else
+            wget "$link" -O ./downloads/output_$loop -o ./logs/log_$loop.txt
+        fi
         ;;
         
         1)
-        wget "https://smashcustommusic.net/brstm/$link" -O ./conversion/output_$loop$extension -o ./logs/log_$loop.txt
+        if test $__DOWNLOAD__ = "curl"; then
+            curl "https://smashcustommusic.net/brstm/$link" -o ./conversion/output_$loop$extension > ./logs/log_$loop.txt
+        else
+            wget "https://smashcustommusic.net/brstm/$link" -O ./conversion/output_$loop$extension -o ./logs/log_$loop.txt
+        fi
         ;;
         
         2)
