@@ -188,7 +188,7 @@ function downloader_chooser {
     case $downloadType in
         0)
         if test $__DOWNLOAD__ = "curl"; then
-            curl "$link" -o ./downloads/output_$loop -v > ./logs/log_$loop.txt
+            curl "$link" -o ./downloads/output_$loop -s
         else
             wget "$link" -O ./downloads/output_$loop -o ./logs/log_$loop.txt
         fi
@@ -196,7 +196,7 @@ function downloader_chooser {
         
         1)
         if test $__DOWNLOAD__ = "curl"; then
-            curl "https://smashcustommusic.net/brstm/$link" -o ./conversion/output_$loop$extension > ./logs/log_$loop.txt
+            curl "https://smashcustommusic.net/brstm/$link" -o ./conversion/output_$loop$extension -s
         else
             wget "https://smashcustommusic.net/brstm/$link" -O ./conversion/output_$loop$extension -o ./logs/log_$loop.txt
         fi
