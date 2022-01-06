@@ -29,8 +29,9 @@ This script does not obtain or patch it for you.
 This script requires a few programs in order to work. 
 	
 	ffmpeg - Required for brstm conversion. 
-	openrevolution (Must be compiled) - Required for brstm conversion. 
+	openrevolution (Must be compiled) (Also available in the AUR) - Required for brstm conversion. 
 	wget - Required for downloading of files. 
+        curl - Can be used as an alternative
 	yt-dlp - Required for downloading from youtube. 
 	jq - Required for interpreting json files. 
     
@@ -42,6 +43,11 @@ An example file is included for testing purposes.
 
 Follow the on-screen prompts and wait until all files are downloaded and converted.
 If everything goes okay, the pack will available in "My Stuff"
+
+#### Arguments
+
+    -c, --curl            Enforce the use of curl
+    -h, --help            Show this help and exit
 
 ## Making a pack
 
@@ -93,7 +99,6 @@ Do this for all 31 tracks in the game, and you will have a complete music pack.
 
 ## Todo
 
-- Add curl as an alternative to wget.
 - Creation of multi-channel brstms
 - Support for other music files (winning tune, track intro)
 - Support for battle arena music.
@@ -107,7 +112,6 @@ Do this for all 31 tracks in the game, and you will have a complete music pack.
 
 ### Possible cli flags
 
-- -c / --curl - Enable curl downloading
 - -l / --log  - Enable saving of logs
 - -x / --extracted-fs - Enable copying to extracted file system
 - -t / --test - Test mode.

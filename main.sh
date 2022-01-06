@@ -10,14 +10,38 @@
 # This script will download and construct a mario kart wii music pack.
 # Requirements are set in README.MD.
 
+function argu_check {
+for arg in "$@"; do
+  shift
+  case "$arg" in
+    "--help") set -- "$@" "-h" ;;
+    "--curl") set -- "$@" "-c" ;;
+    *)        set -- "$@" "$arg"
+  esac
+done
+
+while getopts 'ch' OPTION; do
+    case "$OPTION" in
+        h)
+            echo "Usage: main.sh [options...]"
+            echo "  -c, --curl            Enforce the use of curl"
+            echo "  -h, --help            Show this help and exit"
+            exit 0;
+            ;;
+        c)
+            __DOWNLOAD__="curl"
+        ;;
+    esac
+done
+}
+
 function file_check {
-__DOWNLOAD__="wget"
 
 #Check for required files
 
 if ! hash "wget" 2>/dev/null; then
-	echo "wget not found, curl will be used if found.";
-	$__DOWNLOAD__="curl"
+	echo "wget not found, using curl";
+	__DOWNLOAD__="curl"
 	if ! hash "curl" 2>/dev/null; then
         echo "curl not found";
         exit 2;
@@ -235,7 +259,9 @@ file=""
 extension=".brstm"
 dictionary="trackListing.json"
 loop=0
+__DOWNLOAD__="wget"
 
+argu_check $@
 file_check
 file_selection_menu
 user_file_check $file
