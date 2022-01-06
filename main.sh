@@ -137,8 +137,9 @@ function init {
 # Simple function to initialise required folders
     mkdir downloads
     mkdir conversion
-    mkdir My\ Stuff
+    mkdir packs
     mkdir logs
+    mkdir ./packs/"$(jq -r '.name' $fileDirect)"
 
 }
 
@@ -177,11 +178,11 @@ fi
         
     # Obtain all information needed.
 
+enabled="$(jq -r '.tracks | .['$loop'].enabled' $fileDirect)"
 courseName="$(jq -r '.Tracks | .['$loop'].Track' $dictionary)"
 fileName="$(jq -r '.Tracks | .['$loop'].Filename' $dictionary)"
 channels="$(jq -r '.Tracks | .['$loop'].Tracks' $dictionary)"
 title="$(jq -r '.tracks | .['$loop'].title' $fileDirect)"
-enabled="$(jq -r '.tracks | .['$loop'].enabled' $fileDirect)"
 downloadType="$(jq -r '.tracks | .['$loop'].downloadtype' $fileDirect)"
 game="$(jq -r '.tracks | .['$loop'].game' $fileDirect)"
 length="$(jq -r '.tracks | .['$loop'].length' $fileDirect)"
@@ -227,7 +228,7 @@ function downloader_chooser {
         ;;
         
         2)
-        yt-dlp "$link" -f 251 -o ./downloads/output_$loop
+        yt-dlp "$link" -f 251 -o ./downloads/output_$loop > ./logs/log_$loop.txt
         ;;
         
         *)
@@ -240,15 +241,17 @@ function downloader_chooser {
 function track_processor {
 # This function produces the brstms from the supplied information.
 
+packName="$(jq -r '.name' $fileDirect)"
+
 if ! test $downloadType = "1"; then
-    ffmpeg -i "./downloads/output_$loop" "./downloads/output_$loop.wav" > ./logs/log_file_convert_$loop.txt
+    ffmpeg -i "./downloads/output_$loop" "./downloads/output_$loop.wav" > ./logs/log_file_convert_$loop.txt 2>&1
     brstm_converter "./downloads/output_$loop.wav" -o "./conversion/output_$loop$extension" -l $trackLoop > ./logs/log_convert_$loop.txt
 fi
-    brstm_converter "./conversion/output_$loop$extension" -o "./My Stuff/$fileName"n"$extension" --ffmpeg "-af volume=$volume'dB'" > ./logs/log_volume_$loop.txt
+    brstm_converter "./conversion/output_$loop$extension" -o "./packs/$packName/$fileName"n"$extension" --ffmpeg "-af volume=$volume'dB'" > ./logs/log_volume_$loop.txt 2>&1
     if test $speed = "null"; then
         speed=1.10
     fi
-    brstm_converter "./My Stuff/$fileName"n"$extension" -o "./My Stuff/$fileName"f"$extension" --ffmpeg "-filter:a "atempo=$speed"" > ./logs/log_speed_$loop.txt
+    brstm_converter "./packs/$packName/$fileName"n"$extension" -o "./packs/$packName/$fileName"f"$extension" --ffmpeg "-filter:a "atempo=$speed"" > ./logs/log_speed_$loop.txt 2>&1
 }
 
 # - - - - - - - - - - - - - - - -
@@ -284,4 +287,5 @@ done
 
 deinit
 
+echo "Download Complete"
 exit 0;
