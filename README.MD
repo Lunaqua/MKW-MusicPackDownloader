@@ -29,6 +29,7 @@ This script does not obtain or patch it for you.
 This script requires a few programs in order to work. 
 	
 	ffmpeg - Required for brstm conversion. 
+        ffmpeg must be compiled with `--enable-librubberband`
 	openrevolution (Must be compiled) (Also available in the AUR) - Required for brstm conversion. 
 	wget - Required for downloading of files. 
         curl - Can be used as an alternative
@@ -47,6 +48,8 @@ If everything goes okay, the pack will available in "My Stuff"
 #### Arguments
 
     -c, --curl            Enforce the use of curl
+    -t, --test            Test mode, download one song from a pack
+    -l, --log             Enable saving of logs
     -h, --help            Show this help and exit
 
 ## Making a pack
@@ -88,12 +91,14 @@ Required keys are marked with *, and are required unless "enabled" is set to 0. 
         2 - Download from YouTube.
         
     * "title"           - Name of track.
-      "game"            - Name of game if applicable (optional)
+      "game"            - Name of game if applicable (optional) // Artist (Optional)
       "length"          - Length of track (optional)
     * "link"            - Link to track (if download-type is 1, set to song ID)
     * "loop"            - Loop point in samples (obtain using audacity or equiv. tool)
     * "volume"          - Volume increase of track in dB
       "speed"           - Speed increase (defaults to 1.10x) (limited to range from 0.5 to 2.0)
+      
+* Required Key
     
 Do this for all 31 tracks in the game, and you will have a complete music pack.
 
@@ -102,23 +107,18 @@ Do this for all 31 tracks in the game, and you will have a complete music pack.
 - Creation of multi-channel brstms
 - Support for other music files (winning tune, track intro)
 - Support for battle arena music.
-- Creation of "fast" brstms with pitch-bend
 - Possible download from other websites.
 - Creation of "fast" brstm from seperate music file
 - Better file browser.
-- Test mode, allowing the download of single tracks.
 - Ability to insert files into an extracted mkwii filesystem (Thinking about fkw etc.)
 - Detection of wget download being a brstm file. (Detect file magic?)
 
 ### Possible cli flags
 
-- -l / --log  - Enable saving of logs
 - -x / --extracted-fs - Enable copying to extracted file system
-- -t / --test - Test mode.
 
 ### Future possible ideas
 
 - Windows build using Cygwin
 - Port to C++ (would require a lot of work)
 - Download of music packs from wiki.tockdom.com based on track listing. (Would require a lot of work, and may not be at all feasible)
-

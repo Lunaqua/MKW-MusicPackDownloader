@@ -16,20 +16,33 @@ for arg in "$@"; do
   case "$arg" in
     "--help") set -- "$@" "-h" ;;
     "--curl") set -- "$@" "-c" ;;
+    "--log") set -- "$@" "-l" ;;
+    "--test") set -- "$@" "-t" ;;
     *)        set -- "$@" "$arg"
   esac
 done
 
-while getopts 'ch' OPTION; do
+while getopts 'chlt:' OPTION; do
     case "$OPTION" in
         h)
             echo "Usage: main.sh [options...]"
             echo "  -c, --curl            Enforce the use of curl"
+            echo "  -t, --test            Test mode, download one song from a pack"
+            echo "  -l, --log             Enable saving of logs"
             echo "  -h, --help            Show this help and exit"
             exit 0;
             ;;
+            
         c)
             __DOWNLOAD__="curl"
+            ;;
+            
+        t)
+            trackNumber=$OPTARG
+            ;;
+            
+        l)
+            keepLogs=true
         ;;
     esac
 done
@@ -123,6 +136,7 @@ fileDirect="./JSON/$1"
         echo "Version: $(jq -r '.version' $fileDirect)"
         echo "---"
         
+        userChoice="Y"
         printf "\n Is this the correct pack? (Y/n): "
         read userChoice
         
@@ -145,8 +159,11 @@ function init {
 
 function deinit {
 # Cleanup
-    rm -rf downloads
-    rm -rf conversion
+    rm -r downloads
+    rm -r conversion
+    case $keepLogs in
+  (false)    rm -r logs;;
+    esac
 
 }
 
@@ -169,7 +186,7 @@ fi
             # 2 - youtube download (via yt-dlp)
         
         # "title"           - Name of track.
-        # "game"            - Name of game if applicable (optional)
+        # "game"            - Name of game if applicable (optional) // Artist (Optional)
         # "length"          - Length of track (optional)
         # "link"            - Link to track (if download-type is 1, song ID)
         # "loop"            - Loop point in samples
@@ -251,7 +268,7 @@ fi
     if test $speed = "null"; then
         speed=1.10
     fi
-    brstm_converter "./packs/$packName/$fileName"n"$extension" -o "./packs/$packName/$fileName"f"$extension" --ffmpeg "-filter:a "atempo=$speed"" > ./logs/log_speed_$loop.txt 2>&1
+    brstm_converter "./packs/$packName/$fileName"n"$extension" -o "./packs/$packName/$fileName"f"$extension" --ffmpeg "-filter:a "rubberband=pitch=1.05,rubberband=pitchq=quality"" > ./logs/log_speed_$loop.txt 2>&1
 }
 
 # - - - - - - - - - - - - - - - -
@@ -263,27 +280,37 @@ extension=".brstm"
 dictionary="trackListing.json"
 loop=0
 __DOWNLOAD__="wget"
+keepLogs=false
 
+trackNumber=-1
 argu_check $@
 file_check
 file_selection_menu
 user_file_check $file
 printf "\n -- beginning download and construction process -- "
 init
+echo "$(test -z $trackNumber)"
 
-#For loop for performing the download and construction on each line of the json.
-for loop in {0..30}
-do
-json_process
+if ! test $trackNumber = -1; then
+    loop=$trackNumber
+    json_process
+    downloader_chooser
+    track_processor
+else
+    #For loop for performing the download and construction on each line of the json.
+    for loop in {0..30}
+    do
+    json_process
 
-if test $? -eq 1; then
-    continue
+    if test $? -eq 1; then
+        continue
+    fi
+
+    downloader_chooser
+    track_processor
+    loop=$loop+1
+    done
 fi
-
-downloader_chooser
-track_processor
-loop=$loop+1
-done
 
 deinit
 
