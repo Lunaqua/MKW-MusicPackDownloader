@@ -94,7 +94,8 @@ Required keys are marked with *, and are required unless "enabled" is set to 0. 
       "game"            - Name of game if applicable (optional) // Artist (Optional)
       "length"          - Length of track (optional)
     * "link"            - Link to track (if download-type is 1, set to song ID)
-    * "loop"            - Loop point in samples (obtain using audacity or equiv. tool)
+    * "startLoop"      - Loop point in samples (obtain using audacity or equiv. tool)
+    * "endLoop"        - End point of file, in samples.
     * "volume"          - Volume increase of track in dB
       "speed"           - Speed increase (defaults to 1.10x) (limited to range from 0.5 to 2.0)
       

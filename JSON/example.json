@@ -1,10 +1,10 @@
 {
     "header": "MKWMP-HEADER",
-    "mkversion": "v1.0.0",
+    "mkversion": "v1.1.0",
     "name": "Example Music Pack",
     "author": "Example Author",
     "date": "2222-22-22",
-    "version": "v1.0",
+    "version": "v1.1.0",
     "tracks": [
         {
             "enabled": "1",
@@ -13,7 +13,8 @@
             "game": "Pac-Man Party",
             "length": "0:32",
             "link": "17516",
-            "loop": "0",
+            "startloop": "0",
+            "endLoop": "1536000",
             "volume": "5",
             "speed": "1.15"
         },
@@ -24,7 +25,8 @@
             "game": "Sonic Unleashed",
             "length": "5:02",
             "link": "https://www.youtube.com/watch?v=2b8TKhIz_ZY",
-            "loop": "6604701",
+            "startLoop": "6604701",
+            "endLoop": "14451357",
             "volume": "6"
         },
         {
@@ -35,12 +37,22 @@
             "game": "Unreal Tournament",
             "length": "8:15",
             "link": "https://raw.githubusercontent.com/Lunaqua/MKW-MusicPackDownloader/master/sample.ogg",
-            "loop": "0",
+            "startLoop": "0",
+            "endLoop": "23771429",
             "volume": "5",
             "speed": "1.2"
         },
         {
-            "enabled": "0"
+            "enabled": "1",
+            "downloadtype": "0",
+            "title": "infinity.s3m",
+            "game": "n/a",
+            "length": "2:51",
+            "link": "https://raw.githubusercontent.com/Lunaqua/MKW-MusicPackDownloader/master/infinity.s3m.ogg",
+            "startLoop": "0",
+            "endLoop": "3814586",
+            "volume": "5",
+            "speed": "1.2"
         },
         {
             "enabled": "0"

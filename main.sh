@@ -117,7 +117,7 @@ fi
 
 header="$(jq -r '.mkversion' "./JSON/$file")"
 
-if test $header != "v1.0.0"; then
+if test $header != "v1.1.0"; then
     echo "Invalid JSON"
     exit 4;
 fi
@@ -189,7 +189,8 @@ fi
         # "game"            - Name of game if applicable (optional) // Artist (Optional)
         # "length"          - Length of track (optional)
         # "link"            - Link to track (if download-type is 1, song ID)
-        # "loop"            - Loop point in samples
+        # "startLoop"      - Loop point in samples
+        # "endLoop"        - End loop point (end of file) in samples
         # "volume"          - Volume increase of track in dB
         # "speed"           - Speed increase (defaults to 1.10x)
         
@@ -204,7 +205,8 @@ downloadType="$(jq -r '.tracks | .['$loop'].downloadtype' $fileDirect)"
 game="$(jq -r '.tracks | .['$loop'].game' $fileDirect)"
 length="$(jq -r '.tracks | .['$loop'].length' $fileDirect)"
 link="$(jq -r '.tracks | .['$loop'].link' $fileDirect)"
-trackLoop="$(jq -r '.tracks | .['$loop'].loop' $fileDirect)"
+trackLoop="$(jq -r '.tracks | .['$loop'].startLoop' $fileDirect)"
+endLoop="$(jq -r '.tracks | .['$loop'].endLoop' $fileDirect)"
 volume="$(jq -r '.tracks | .['$loop'].volume' $fileDirect)"
 speed="$(jq -r '.tracks | .['$loop'].speed' $fileDirect)"
 
@@ -264,11 +266,11 @@ if ! test $downloadType = "1"; then
     ffmpeg -i "./downloads/output_$loop" "./downloads/output_$loop.wav" > ./logs/log_file_convert_$loop.txt 2>&1
     brstm_converter "./downloads/output_$loop.wav" -o "./conversion/output_$loop$extension" -l $trackLoop > ./logs/log_convert_$loop.txt
 fi
-    brstm_converter "./conversion/output_$loop$extension" -o "./packs/$packName/$fileName"n"$extension" --ffmpeg "-af volume=$volume'dB'" > ./logs/log_volume_$loop.txt 2>&1
+    brstm_converter "./conversion/output_$loop$extension" -o "./packs/$packName/$fileName"n"$extension" --ffmpeg "-af volume=$volume'dB'" --extend $endLoop > ./logs/log_volume_$loop.txt 2>&1
     if test $speed = "null"; then
         speed=1.10
     fi
-    brstm_converter "./packs/$packName/$fileName"n"$extension" -o "./packs/$packName/$fileName"f"$extension" --ffmpeg "-filter:a "rubberband=pitch=1.05,rubberband=pitchq=quality"" > ./logs/log_speed_$loop.txt 2>&1
+    brstm_converter "./packs/$packName/$fileName"n"$extension" -o "./packs/$packName/$fileName"f"$extension" --ffmpeg "-filter:a "rubberband=pitch=1.05,rubberband=tempo=$speed,rubberband=pitchq=quality"" > ./logs/log_speed_$loop.txt 2>&1
 }
 
 # - - - - - - - - - - - - - - - -
